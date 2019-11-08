@@ -49,21 +49,23 @@ class Weather extends Equatable {
 
   bool _sunriseSunsetFormatter(
       String sunrise, String sunset, String timestamp) {
-    var formatter = new DateFormat('yyyy-mm-dd');
+    var formatter = new DateFormat('yyyy-MM-dd');
+
+    var currentDate = formatter.format(DateTime.now());
 
     DateTime sunriseParsed = DateTime.parse(
-        formatter.format(DateTime.now()) + " " + sunrise.toString());
+        currentDate + " " + sunrise.toString());
 
     DateTime sunsetParsed = DateTime.parse(
-        formatter.format(DateTime.now()) + " " + sunset.toString());
+        currentDate + " " + sunset.toString());
 
     DateTime time =
         DateTime.fromMicrosecondsSinceEpoch(int.parse(timestamp) * 1000);
 
-    if (sunriseParsed.hour < time.hour || sunsetParsed.hour > time.hour) {
-      return false;
+    if (time.hour > sunriseParsed.hour && time.hour < sunsetParsed.hour) {
+      return true;
     }
-    return true;
+    return false;
   }
 
   String _parseTimeFromTimestamp(String timestamp) {
