@@ -6,7 +6,7 @@ import 'network_util.dart';
 class RestDataSource {
   NetworkUtil _netUtil = new NetworkUtil();
 
-  static final BASE_URL = "http://192.168.1.241:3001/";
+  static final BASE_URL = "https://enigmatic-forest-52909.herokuapp.com/";
   static final METEOSTATION_NAME = "meteostationdatabyname?name=";
   static final METEOSTATIONS = "meteostations";
 
